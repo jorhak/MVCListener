@@ -8,7 +8,8 @@ package com.pierluigi.prueba;
  *
  * @author jorhak
  */
-import com.pierluigi.modelo.Modelo;
+
+import com.pierluigi.utilidades.Conexion;
 
 public class testConexion {
 
@@ -16,8 +17,7 @@ public class testConexion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Modelo modelo = new Modelo();
-        modelo.Conexion();
+        Conexion.getInstance().connect();
     }
     
 }

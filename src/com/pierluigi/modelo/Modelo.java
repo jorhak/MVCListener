@@ -11,11 +11,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class Modelo {
 
-    private String host = "192.168.0.22";
+    private String host = "localhost";
     private String user = "root";
-    private String pass = "perpetuaeternidad";
-    private String database = "SistemaMVC";
-    private String port = "3322";
+    private String pass = "";
+    private String database = "sistemamvc";
+    private String port = "3306";
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String path = "jdbc:mysql://" + host + ":" + port + "/" + database;
 
