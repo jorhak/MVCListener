@@ -347,4 +347,9 @@ public class VSocio extends javax.swing.JFrame implements IVista {
         btnRegistrar.setEnabled(false);
         btnModificar.setEnabled(false);
     }
+
+    @Override
+    public void ActualizarConCombo(List<Map<String, String>> datos, Map<String, String> combo, String seleccion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

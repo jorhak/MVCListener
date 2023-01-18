@@ -13,4 +13,5 @@ import java.util.Map;
  */
 public interface IVista {
     public void Actualizar(List<Map<String,String>> datos);
+    public void ActualizarConCombo(List<Map<String,String>> datos, Map<String,String> combo, String seleccion);
 }

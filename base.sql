@@ -19,3 +19,13 @@ create table socio(
   telefono varchar(8) not null,
   primary key(codigo)
 );
+
+create table consumo(
+  id int auto_increment,
+  fecha varchar(10) not null,
+  hora varchar(8) not null,
+  cantidad double not null,
+  codigoSocio int not null,
+  primary key(id),
+  foreign key (codigoSocio) references socio(codigo)
+);

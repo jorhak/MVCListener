@@ -134,7 +134,21 @@ public class MSocio implements IModelo {
             socio.put(row.get("codigo"), fullname);
         }
         return socio;
+    }
+    
+    public Map<String,String> Seleccionado(int codigoSocio){
+        Map<String, String> socio = new LinkedHashMap<>();
 
+        String sql = "select * from socio where codigo='"+codigoSocio+"' order by 1;";
+        List<Map<String, String>> rows = Conexion.getInstance().executeSQLResultList(sql);
+
+        for (int i = 0; i < rows.size(); i++) {
+            Map<String, String> row = rows.get(i);
+
+            String fullname = row.get("nombre") + " " + row.get("apellido");
+            socio.put(row.get("codigo"), fullname);
+        }
+        return socio;
     }
 
 }
