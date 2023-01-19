@@ -313,7 +313,7 @@ public class VFactura extends javax.swing.JFrame implements IVista{
     public static javax.swing.JButton btnBuscar;
     public static javax.swing.JButton btnEliminar;
     public static javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnQuitar;
+    public static javax.swing.JButton btnQuitar;
     public static javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

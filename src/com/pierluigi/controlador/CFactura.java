@@ -45,6 +45,7 @@ public class CFactura implements IControlador {
         vista.btnBuscar.addActionListener(this);
         vista.btnAgregar.addActionListener(this);
         vista.btnRegistrar.addActionListener(this);
+        vista.btnQuitar.addActionListener(this);
         Listar();
     }
 
@@ -99,7 +100,31 @@ public class CFactura implements IControlador {
 
     @Override
     public void Cancelar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int fila = vista.tablaDetalle.getSelectedRow();
+        Map<String, String> detalle = new LinkedHashMap<>();
+        if (fila >= 0) {
+            String idConsumo = vista.tablaDetalle.getValueAt(fila, 0).toString();
+            String precio = vista.tablaDetalle.getValueAt(fila, 1).toString();
+            double valor = Double.parseDouble(precio);
+            detalle.put("idConsumo", idConsumo);
+            detalle.put("precio", String.valueOf(valor));
+
+            double total = Double.parseDouble(vista.labelTotal.getText());
+            total -= valor;
+            vista.labelTotal.setText(String.valueOf(total));
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado la fila para quitar el detalle.");
+        }
+
+
+
+        tDetalle.removeRow(fila);
+
+        double valor = Double.parseDouble(vista.labelTotal.getText());
+        BigDecimal bd = new BigDecimal(valor).setScale(1, RoundingMode.HALF_UP);
+
+        vista.textMonto.setText(String.valueOf(bd));
     }
 
     @Override
@@ -240,6 +265,13 @@ public class CFactura implements IControlador {
         if (vista.btnRegistrar == e.getSource()) {
             try {
                 Registrar();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar la factura>>>>" + ex.getMessage());
+            }
+        }
+        if (vista.btnQuitar == e.getSource()) {
+            try {
+                Cancelar();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "No se pudo registrar la factura>>>>" + ex.getMessage());
             }
