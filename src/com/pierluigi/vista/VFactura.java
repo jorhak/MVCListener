@@ -55,6 +55,7 @@ public class VFactura extends javax.swing.JFrame implements IVista{
         labelMonto = new javax.swing.JLabel();
         textSocio = new javax.swing.JTextField();
         textMonto = new javax.swing.JTextField();
+        btnObtener = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -190,6 +191,8 @@ public class VFactura extends javax.swing.JFrame implements IVista{
 
         labelMonto.setText("Monto:");
 
+        btnObtener.setText("Obtener");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -211,8 +214,11 @@ public class VFactura extends javax.swing.JFrame implements IVista{
                         .addComponent(labelMonto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnEliminar))
-                .addGap(161, 161, 161))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnEliminar)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnObtener)))
+                .addGap(93, 93, 93))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,7 +237,8 @@ public class VFactura extends javax.swing.JFrame implements IVista{
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnObtener))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -313,6 +320,7 @@ public class VFactura extends javax.swing.JFrame implements IVista{
     public static javax.swing.JButton btnBuscar;
     public static javax.swing.JButton btnEliminar;
     public static javax.swing.JButton btnModificar;
+    public static javax.swing.JButton btnObtener;
     public static javax.swing.JButton btnQuitar;
     public static javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;

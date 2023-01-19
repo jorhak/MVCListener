@@ -46,6 +46,8 @@ public class CFactura implements IControlador {
         vista.btnAgregar.addActionListener(this);
         vista.btnRegistrar.addActionListener(this);
         vista.btnQuitar.addActionListener(this);
+        vista.btnEliminar.addActionListener(this);
+        vista.btnObtener.addActionListener(this);
         Listar();
     }
 
@@ -67,12 +69,12 @@ public class CFactura implements IControlador {
     public void Registrar() {
         Map<String, String> cabecera = Cabecera();
         List<Map<String, String>> cuerpo = Cuerpo();
-        
+
         modelo.SetDato(cabecera);
         modelo.SetDatoItems(cuerpo);
-        
+
         Map<String, String> factura = modelo.Registrar();
-        if(factura != null){
+        if (factura != null) {
             List<Map<String, String>> items = modelo.RegistrarItems(factura.get("id"));
         }
         Listar();
@@ -85,7 +87,18 @@ public class CFactura implements IControlador {
 
     @Override
     public void Eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int fila = vista.tablaFactura.getSelectedRow();
+        Map<String, String> detalle = new LinkedHashMap<>();
+        if (fila >= 0) {
+            String idFactura = vista.tablaFactura.getValueAt(fila, 0).toString();
+            if (modelo.EliminarItems(idFactura)) {
+                modelo.Eliminar(idFactura);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado la fila para borrar la factura.");
+        }
+        Listar();
     }
 
     @Override
@@ -117,8 +130,6 @@ public class CFactura implements IControlador {
             JOptionPane.showMessageDialog(null, "No se ha seleccionado la fila para quitar el detalle.");
         }
 
-
-
         tDetalle.removeRow(fila);
 
         double valor = Double.parseDouble(vista.labelTotal.getText());
@@ -129,7 +140,18 @@ public class CFactura implements IControlador {
 
     @Override
     public void Obtener() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int fila = vista.tablaFactura.getSelectedRow();
+        if (fila >= 0) {
+
+            vista.textMonto.setText(vista.tablaFactura.getValueAt(fila, 3).toString());
+            mSocio.SetID(vista.tablaFactura.getValueAt(fila, 4).toString());
+            Map<String, String> socio = mSocio.BuscarID();
+            vista.textSocio.setText(socio.getOrDefault("nombre", "") + " " + socio.getOrDefault("apellido", ""));
+            
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado la fila para obtener la factura.");
+        }
     }
 
     @Override
@@ -272,6 +294,20 @@ public class CFactura implements IControlador {
         if (vista.btnQuitar == e.getSource()) {
             try {
                 Cancelar();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar la factura>>>>" + ex.getMessage());
+            }
+        }
+        if (vista.btnEliminar == e.getSource()) {
+            try {
+                Eliminar();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar la factura>>>>" + ex.getMessage());
+            }
+        }
+        if (vista.btnObtener == e.getSource()) {
+            try {
+                Obtener();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "No se pudo registrar la factura>>>>" + ex.getMessage());
             }
