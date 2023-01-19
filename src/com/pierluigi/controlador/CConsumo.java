@@ -6,6 +6,7 @@ package com.pierluigi.controlador;
 
 import com.pierluigi.modelo.MConsumo;
 import com.pierluigi.modelo.MSocio;
+import com.pierluigi.utilidades.Fecha;
 import com.pierluigi.utilidades.IControlador;
 import com.pierluigi.vista.VConsumo;
 import java.awt.event.ActionEvent;
@@ -69,8 +70,8 @@ public class CConsumo implements IControlador {
         String[] codigoSocio = combo.split(" ");
 
         Map<String, String> dato = new LinkedHashMap();
-        dato.put("fecha", getFecha());
-        dato.put("hora", getHora());
+        dato.put("fecha", Fecha.getFecha());
+        dato.put("hora", Fecha.getHora());
         dato.put("cantidad", vista.textCantidad.getText());
         dato.put("codigoSocio", codigoSocio[0]);
         modelo.SetDato(dato);
@@ -134,7 +135,6 @@ public class CConsumo implements IControlador {
             for (String clave : seleccionado.keySet()) {
                 String valor = clave + " " + seleccionado.get(clave);
                 vista.comboSocio.setSelectedItem(valor);
-
             }
 
         } else {
@@ -147,7 +147,7 @@ public class CConsumo implements IControlador {
         List<Map<String, String>> dato = new LinkedList<>();
         modelo.SetID(vista.textBuscar.getText());
         dato.add(modelo.BuscarID());
-        Listar();
+        vista.Actualizar(dato);
     }
 
     @Override
@@ -213,19 +213,6 @@ public class CConsumo implements IControlador {
                 JOptionPane.showMessageDialog(null, "No se pudo refrescar la tabla>>>>" + ex.getMessage());
             }
         }
-    }
-
-    private String getHora() {
-        Date hora = new Date();
-        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
-
-        return formatoHora.format(hora);
-    }
-
-    private String getFecha() {
-        Date fecha = new Date();
-        SimpleDateFormat formatoHora = new SimpleDateFormat("dd-MM-yyyy");
-        return formatoHora.format(fecha);
     }
 
 }

@@ -29,3 +29,23 @@ create table consumo(
   primary key(id),
   foreign key (codigoSocio) references socio(codigo)
 );
+
+create table factura(
+  id int auto_increment,
+  fecha varchar(10) not null,
+  hora varchar(8) not null,
+  monto double not null,
+  codigoSocio int not null,
+  primary key(id),
+  foreign key (codigoSocio) references socio(codigo)
+);
+
+create table detalle_factura(
+  id int auto_increment,
+  idFactura int,
+  precio double not null,
+  idConsumo int not null,
+  primary key(id, idFactura),
+  foreign key(idFactura) references factura(id),
+  foreign key(idConsumo) references consumo(id)
+);

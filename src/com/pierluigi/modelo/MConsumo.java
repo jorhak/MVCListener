@@ -128,10 +128,14 @@ public class MConsumo implements IModelo{
             socio.put(row.get("id"), fullname);
         }
         return socio;
-
     }
     
-    
+    public List<Map<String,String>> BuscarConsumo(String columnName, Object columnValue){
+        String sql = "select * from consumo where %s='%s' ;";
+        sql = String.format(sql, columnName, columnValue);
+
+        return Conexion.getInstance().executeSQLResultList(sql);
+    }
     
     
 }

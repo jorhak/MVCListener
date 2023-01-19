@@ -253,7 +253,7 @@ public class VConsumo extends javax.swing.JFrame implements IVista{
 
     @Override
     public void Actualizar(List<Map<String, String>> datos) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Tabla(datos);
     }
 
     @Override
